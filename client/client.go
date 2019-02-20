@@ -21,7 +21,7 @@ type Frame struct {
 
 type Args struct {
 	Pid      int      `json:"pid"`
-	Activity Activity `json:"activity"`
+	Activity *Activity `json:"activity"`
 }
 
 type Activity struct {
@@ -47,7 +47,7 @@ func Login(clientid string) {
 	fmt.Println(ipc.Send(0, string(payload)))
 }
 
-func SetActivity(activity Activity) {
+func SetActivity(activity *Activity) {
 	payload, err := json.Marshal(Frame{
 		"SET_ACTIVITY",
 		Args{
