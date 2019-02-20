@@ -1,11 +1,12 @@
 package client
 
 import (
-	"github.com/ananagame/rich-go/ipc"
 	"crypto/rand"
 	"encoding/json"
 	"fmt"
 	"os"
+
+	"github.com/ananagame/rich-go/ipc"
 )
 
 type Handshake struct {
@@ -20,21 +21,27 @@ type Frame struct {
 }
 
 type Args struct {
-	Pid      int      `json:"pid"`
+	Pid      int       `json:"pid"`
 	Activity *Activity `json:"activity"`
 }
 
 type Activity struct {
-	Details string `json:"details"`
-	State   string `json:"state"`
-	Assets Assets `json:"assets"`
+	Details    string      `json:"details"`
+	State      string      `json:"state"`
+	Timestamps *Timestamps `json:"timestamps"`
+	Assets     Assets      `json:"assets"`
+}
+
+type Timestamps struct {
+	Start int64 `json:"start"`
+	// End   int64 `json:"end"`
 }
 
 type Assets struct {
-	LargeImage string`json:"large_image"`
-	LargeText string `json:"large_text"`
+	LargeImage string `json:"large_image"`
+	LargeText  string `json:"large_text"`
 	SmallImage string `json:"small_image"`
-	SmallText string `json:"small_text"`
+	SmallText  string `json:"small_text"`
 }
 
 func Login(clientid string) {
@@ -64,7 +71,6 @@ func SetActivity(activity *Activity) {
 
 	fmt.Println(ipc.Send(1, string(payload)))
 }
-
 
 func getNonce() string {
 	buf := make([]byte, 16)
