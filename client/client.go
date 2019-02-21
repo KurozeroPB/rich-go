@@ -26,10 +26,10 @@ type Args struct {
 }
 
 type Activity struct {
-	Details    string      `json:"details"`
-	State      string      `json:"state"`
-	Timestamps *Timestamps `json:"timestamps"`
-	Assets     Assets      `json:"assets"`
+	Details    string     `json:"details"`
+	State      string     `json:"state"`
+	Timestamps Timestamps `json:"timestamps"`
+	Assets     Assets     `json:"assets"`
 }
 
 type Timestamps struct {
